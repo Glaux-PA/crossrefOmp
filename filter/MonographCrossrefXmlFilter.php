@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @file plugins/generic/crossref/filter/ArticleCrossrefXmlFilter.php
+ * @file plugins/importexport/crossrefOmp/filter/ArticleCrossrefXmlFilter.php
  *
  * Copyright (c) 2014-2021 Simon Fraser University
  * Copyright (c) 2000-2021 John Willinsky
@@ -9,17 +9,17 @@
  *
  * @class ArticleCrossrefXmlFilter
  *
- * @ingroup plugins_generic_crossref
+ * @ingroup plugins_importexport_crossrefOmp
  *
  * @brief Class that converts an Article to a Crossref XML document.
  */
 
-namespace APP\plugins\generic\crossref\filter;
+namespace APP\plugins\importexport\crossrefOmp\filter;
 
 use APP\author\Author;
 use APP\core\Application;
 use APP\facades\Repo;
-use APP\plugins\generic\crossref\CrossrefExportDeployment;
+use APP\plugins\importexport\crossrefOmp\CrossrefExportDeployment;
 use APP\submission\Submission;
 use DOMDocument;
 use DOMElement;

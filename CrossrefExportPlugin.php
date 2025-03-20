@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @file plugins/generic/crossref/CrossrefExportPlugin.php
+ * @file plugins/importexport/crossrefOmp/CrossrefExportPlugin.php
  *
  * Copyright (c) 2014-2022 Simon Fraser University
  * Copyright (c) 2003-2022 John Willinsky
@@ -12,15 +12,15 @@
  * @brief Crossref/MEDLINE XML metadata export plugin
  */
 
-namespace APP\plugins\generic\crossref;
+namespace APP\plugins\importexport\crossrefOmp;
 
 use APP\core\Application;
 use APP\facades\Repo;
 use APP\press\Press;
 //use APP\plugins\DOIPubIdExportPlugin;
-use APP\plugins\generic\crossref\classes\DOIPubIdExportPlugin;
+use APP\plugins\importexport\crossrefOmp\classes\DOIPubIdExportPlugin;
 //use APP\plugins\IDoiRegistrationAgency;
-use APP\plugins\generic\crossref\classes\IDoiRegistrationAgency;
+use APP\plugins\importexport\crossrefOmp\classes\IDoiRegistrationAgency;
 use APP\submission\Submission;
 use Exception;
 use GuzzleHttp\Exception\GuzzleException;
@@ -187,7 +187,7 @@ class CrossrefExportPlugin extends DOIPubIdExportPlugin
      */
     public function getExportDeploymentClassName()
     {
-        return (string) \APP\plugins\generic\crossref\CrossrefExportDeployment::class;
+        return (string) \APP\plugins\importexport\crossrefOmp\CrossrefExportDeployment::class;
     }
 
     public function exportAndDeposit($context, $objects, $filter, string &$responseMessage, $noValidation = null): bool
@@ -232,7 +232,7 @@ class CrossrefExportPlugin extends DOIPubIdExportPlugin
         // Prepare response message and return status
         if (empty($resultErrors)) {
             if ($errorsOccurred) {
-                $responseMessage = 'plugins.importexport.crossref.register.error.mdsError';
+                $responseMessage = 'plugins.importexport.crossrefOmp.register.error.mdsError';
                 return false;
             } else {
                 $responseMessage = $this->getDepositSuccessNotificationMessageKey();
@@ -342,7 +342,7 @@ class CrossrefExportPlugin extends DOIPubIdExportPlugin
         $xmlDoc->loadXML($response->getBody());
         $batchIdNode = $xmlDoc->getElementsByTagName('batch_id')->item(0);
         $submissionIdNode = $xmlDoc->getElementsByTagName('submission_id')->item(0);
-        $successMessage = __('plugins.generic.crossref.successMessage', ['submissionId' => $submissionIdNode->nodeValue]);
+        $successMessage = __('plugins.importexport.crossrefOmp.successMessage', ['submissionId' => $submissionIdNode->nodeValue]);
 
         // Get the DOI deposit status
         // If the deposit failed
@@ -360,7 +360,7 @@ class CrossrefExportPlugin extends DOIPubIdExportPlugin
             $warningCountNode = $xmlDoc->getElementsByTagName('warning_count')->item(0);
             $warningCount = (int) $warningCountNode->nodeValue;
             if ($warningCount > 0) {
-                $result = [['plugins.importexport.crossref.register.success.warning', htmlspecialchars($response->getBody())]];
+                $result = [['plugins.importexport.crossrefOmp.register.success.warning', htmlspecialchars($response->getBody())]];
             }
             // A possibility for other plugins (e.g. reference linking) to work with the response
             Hook::run('crossrefexportplugin::deposited', [[$this, $response->getBody(), $objects]]);

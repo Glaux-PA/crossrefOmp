@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @file plugins/generic/crossref/filter/SeriesCrossrefXmlFilter.php
+ * @file plugins/importexport/crossrefOmp/filter/SeriesCrossrefXmlFilter.php
  *
  * Copyright (c) 2014-2022 Simon Fraser University
  * Copyright (c) 2000-2022 John Willinsky
@@ -12,10 +12,10 @@
  * @brief Class that converts an Series to a Crossref XML document.
  */
 
-namespace APP\plugins\generic\crossref\filter;
+namespace APP\plugins\importexport\crossrefOmp\filter;
 
 use APP\core\Application;
-use APP\plugins\generic\crossref\CrossrefExportDeployment;
+use APP\plugins\importexport\crossrefOmp\CrossrefExportDeployment;
 use PKP\core\PKPApplication;
 
 class SeriesCrossrefXmlFilter extends \PKP\plugins\importexport\native\filter\NativeExportFilter

@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @file plugins/generic/crossref/classes/CrossrefSettings.php
+ * @file plugins/importexport/crossrefOmp/classes/CrossrefSettings.php
  *
  * Copyright (c) 2014-2023 Simon Fraser University
  * Copyright (c) 2003-2023 John Willinsky
@@ -9,12 +9,12 @@
  *
  * @class CrossrefSettings
  *
- * @ingroup plugins_generic_crossref
+ * @ingroup plugins_importexport_crossrefOmp
  *
  * @brief Setting management class to handle schema, fields, validation, etc. for Crossref plugin
  */
 
-namespace APP\plugins\generic\crossref\classes;
+namespace APP\plugins\importexport\crossrefOmp\classes;
 
 use APP\core\Application;
 use APP\facades\Repo;
@@ -62,27 +62,27 @@ class CrossrefSettings extends \PKP\doi\RegistrationAgencySettings
     {
         return [
             new FieldHTML('preamble', [
-                'label' => __('plugins.importexport.crossref.settings'),
+                'label' => __('plugins.importexport.crossrefOmp.settings'),
                 'description' => $this->_getPreambleText($context),
             ]),
             new FieldText('depositorName', [
-                'label' => __('plugins.importexport.crossref.settings.form.depositorName'),
-                'description' => __('plugins.importexport.crossref.settings.form.depositorName.description'),
+                'label' => __('plugins.importexport.crossrefOmp.settings.form.depositorName'),
+                'description' => __('plugins.importexport.crossrefOmp.settings.form.depositorName.description'),
                 'isRequired' => true,
                 'value' => $this->agencyPlugin->getSetting($context->getId(), 'depositorName'),
             ]),
             new FieldText('depositorEmail', [
-                'label' => __('plugins.importexport.crossref.settings.form.depositorEmail'),
-                'description' => __('plugins.importexport.crossref.settings.form.depositorEmail.description'),
+                'label' => __('plugins.importexport.crossrefOmp.settings.form.depositorEmail'),
+                'description' => __('plugins.importexport.crossrefOmp.settings.form.depositorEmail.description'),
                 'isRequired' => true,
                 'value' => $this->agencyPlugin->getSetting($context->getId(), 'depositorEmail'),
             ]),
             new FieldHTML('credentialsExplanation', [
-                'description' => __('plugins.importexport.crossref.registrationIntro'),
+                'description' => __('plugins.importexport.crossrefOmp.registrationIntro'),
             ]),
             new FieldText('username', [
-                'label' => __('plugins.importexport.crossref.settings.form.username'),
-                'description' => __('plugins.importexport.crossref.settings.form.username.description'),
+                'label' => __('plugins.importexport.crossrefOmp.settings.form.username'),
+                'description' => __('plugins.importexport.crossrefOmp.settings.form.username.description'),
                 'value' => $this->agencyPlugin->getSetting($context->getId(), 'username'),
                 'inputType' => 'text',
             ]),
@@ -95,7 +95,7 @@ class CrossrefSettings extends \PKP\doi\RegistrationAgencySettings
             new FieldOptions('testMode', [
                 'label' => __('plugins.importexport.common.settings.form.testMode.label'),
                 'options' => [
-                    ['value' => true, 'label' => __('plugins.importexport.crossref.settings.form.testMode.description')]
+                    ['value' => true, 'label' => __('plugins.importexport.crossrefOmp.settings.form.testMode.description')]
                 ],
                 'value' => (bool) $this->agencyPlugin->getSetting($context->getId(), 'testMode'),
             ])
@@ -126,7 +126,7 @@ class CrossrefSettings extends \PKP\doi\RegistrationAgencySettings
         $notices = [];
         dump('$context',$context);
         if (!$context->getData('publisher')) {
-            $notices[] = __('plugins.importexport.crossref.error.publisherNotConfigured', ['pressSettingsUrl' => $pressSettingsUrl]);
+            $notices[] = __('plugins.importexport.crossrefOmp.error.publisherNotConfigured', ['pressSettingsUrl' => $pressSettingsUrl]);
         }
 
         $allSeries = Repo::section()
@@ -137,7 +137,7 @@ class CrossrefSettings extends \PKP\doi\RegistrationAgencySettings
 
         foreach ($allSeries as $series) {
             if (!$series->getData('onlineIssn') && !$series->getData('printIssn')) {
-                $notices[] = __('plugins.importexport.crossref.error.issnNotConfigured', ['seriesSettingsUrl' => $seriesSettingsUrl]);
+                $notices[] = __('plugins.importexport.crossrefOmp.error.issnNotConfigured', ['seriesSettingsUrl' => $seriesSettingsUrl]);
             }
         }
 
@@ -152,7 +152,7 @@ class CrossrefSettings extends \PKP\doi\RegistrationAgencySettings
             $text .= '</ul></div>';
         }
 
-        $text .= '<p>' . __('plugins.importexport.crossref.settings.depositorIntro') . '</p>';
+        $text .= '<p>' . __('plugins.importexport.crossrefOmp.settings.depositorIntro') . '</p>';
 
         return $text;
     }

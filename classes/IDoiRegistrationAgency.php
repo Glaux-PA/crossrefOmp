@@ -15,7 +15,7 @@
  */
 
 //namespace APP\plugins;
-namespace APP\plugins\generic\crossref\classes;
+namespace APP\plugins\importexport\crossrefOmp\classes;
 
 use APP\issue\Issue;
 use APP\submission\Submission;

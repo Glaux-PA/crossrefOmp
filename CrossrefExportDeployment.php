@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @file plugins/generic/crossref/CrossrefExportDeployment.php
+ * @file plugins/importexport/crossrefOmp/CrossrefExportDeployment.php
  *
  * Copyright (c) 2014-2022 Simon Fraser University
  * Copyright (c) 2000-2022 John Willinsky
@@ -13,7 +13,7 @@
  * application's specifics.
  */
 
-namespace APP\plugins\generic\crossref;
+namespace APP\plugins\importexport\crossrefOmp;
 use APP\press\Press;
 use PKP\plugins\Plugin;
 

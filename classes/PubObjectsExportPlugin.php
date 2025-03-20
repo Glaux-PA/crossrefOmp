@@ -15,7 +15,7 @@
  */
 
 //namespace APP\plugins;
-namespace APP\plugins\generic\crossref\classes;
+namespace APP\plugins\importexport\crossrefOmp\classes;
 
 use APP\core\Application;
 use APP\core\Request;
@@ -475,10 +475,7 @@ abstract class PubObjectsExportPlugin extends ImportExportPlugin
     public function exportXML($objects, $filter, $context, $noValidation = null, &$outputErrors = null)
     {
         $filterDao = DAORegistry::getDAO('FilterDAO'); /** @var FilterDAO $filterDao */
-        error_log('Valor de $filter en exportXML: ' . print_r($filter, true));
         $exportFilters = $filterDao->getObjectsByGroup($filter);
-        error_log('exportFilters');
-        error_log(print_r($exportFilters, true));
         //error_log('Ejecutando exportXML en PubObjectsExportPlugin');
         //error_log('Submissions a exportar: ' . print_r($objects, true));
         assert(count($exportFilters) == 1); // Assert only a single serialization filter
@@ -932,8 +929,7 @@ abstract class PubObjectsExportPlugin extends ImportExportPlugin
 }
 
 if (!PKP_STRICT_MODE) {
-    //class_alias('\APP\plugins\PubObjectsExportPlugin', '\PubObjectsExportPlugin');
-    class_alias('\APP\plugins\generic\crossref\classes\PubObjectsExportPlugin', '\PubObjectsExportPlugin');
+    class_alias('\APP\plugins\importexport\crossrefOmp\classes\PubObjectsExportPlugin', '\PubObjectsExportPlugin');
 
     foreach ([
         'EXPORT_STATUS_ANY',
@@ -945,6 +941,12 @@ if (!PKP_STRICT_MODE) {
         'EXPORT_ACTION_DEPOSIT',
         'EXPORT_CONFIG_ERROR_SETTINGS',
     ] as $constantName) {
-        define($constantName, constant('\PubObjectsExportPlugin::' . $constantName));
+        if (!defined($constantName)) {
+            define($constantName, constant('\PubObjectsExportPlugin::' . $constantName));
+        } else {
+            error_log("⚠️ Advertencia: La constante $constantName ya estaba definida.");
+        }
     }
 }
+
+

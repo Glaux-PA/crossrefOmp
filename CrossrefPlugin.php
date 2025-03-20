@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @file plugins/generic/crossref/CrossrefPlugin.php
+ * @file plugins/importexport/crossrefOmp/CrossrefPlugin.php
  *
  * Copyright (c) 2014-2022 Simon Fraser University
  * Copyright (c) 2003-2022 John Willinsky
@@ -13,12 +13,12 @@
  *
  */
 
-namespace APP\plugins\generic\crossref;
+namespace APP\plugins\importexport\crossrefOmp;
 
 use APP\core\Application;
 use APP\facades\Repo;
 use APP\section\Section;
-use APP\plugins\generic\crossref\classes\CrossrefSettings;
+use APP\plugins\importexport\crossrefOmp\classes\CrossrefSettings;
 use APP\plugins\IDoiRegistrationAgency;
 //use APP\plugins\generic\crossref\classes\IDoiRegistrationAgency;
 use APP\services\ContextService;
@@ -44,12 +44,12 @@ class CrossrefPlugin extends GenericPlugin implements IDoiRegistrationAgency
 
     public function getDisplayName(): string
     {
-        return __('plugins.generic.crossref.displayName');
+        return __('plugins.importexport.crossrefOmp.displayName');
     }
 
     public function getDescription(): string
     {
-        return __('plugins.generic.crossref.description');
+        return __('plugins.importexport.crossrefOmp.description');
     }
 
     /**
@@ -101,7 +101,7 @@ class CrossrefPlugin extends GenericPlugin implements IDoiRegistrationAgency
                     $outputType = (string) $filterGroup->getOutputType();
     
                     // 🔹 CORREGIDO: Pasamos los argumentos correctos al constructor de Filter
-                    $filter = new Filter($filterGroup, 'APP\plugins\generic\crossref\filter\MonographCrossrefXmlFilter');
+                    $filter = new Filter($filterGroup, 'APP\plugins\importexport\crossrefOmp\filter\MonographCrossrefXmlFilter');
                     $filter->setDisplayName('Crossref XML Export for Monographs');
                     $filter->setIsTemplate(false);
                     $filter->setParentFilterId(0);
@@ -328,7 +328,7 @@ class CrossrefPlugin extends GenericPlugin implements IDoiRegistrationAgency
      */
     public function getRegistrationAgencyName(): string
     {
-        return __('plugins.generic.crossref.registrationAgency.name');
+        return __('plugins.importexport.crossrefOmp.registrationAgency.name');
     }
 
     /**

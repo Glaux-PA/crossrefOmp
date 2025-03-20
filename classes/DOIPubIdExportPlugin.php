@@ -15,7 +15,7 @@
  */
 
 //namespace APP\plugins;
-namespace APP\plugins\generic\crossref\classes;
+namespace APP\plugins\importexport\crossrefOmp\classes;
 
 use APP\facades\Repo;
 use APP\issue\Issue;
@@ -210,5 +210,5 @@ abstract class DOIPubIdExportPlugin extends PubObjectsExportPlugin
 
 if (!PKP_STRICT_MODE) {
     //class_alias('\APP\plugins\DOIPubIdExportPlugin', '\DOIPubIdExportPlugin');
-    class_alias('\APP\plugins\generic\crossref\classes\DOIPubIdExportPlugin', '\DOIPubIdExportPlugin');
+    class_alias('\APP\plugins\importexport\crossrefOmp\classes\DOIPubIdExportPlugin', '\DOIPubIdExportPlugin');
 }
